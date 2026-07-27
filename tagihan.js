@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Ambil data Unpaid dengan filter (hanya unpaid, tidak termasuk partially_paid)
                 const { data: unpaid, error: unpaidErr } = await supabase
                     .from('invoices')
-                    .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                    .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                     .eq('status', 'unpaid')
                     .eq('invoice_period', targetPeriode)
                     .order('created_at', { ascending: false });
@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const { data: installment, error: installmentErr } = await supabase
                         .from('invoices')
-                        .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                        .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                         .eq('status', 'partially_paid')
                         .eq('invoice_period', targetPeriode)
                         .order('created_at', { ascending: false });
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Fallback: ambil data berdasarkan kondisi amount_paid > 0 dan status != 'paid'
                     const { data: installmentFallback, error: fallbackErr } = await supabase
                         .from('invoices')
-                        .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                        .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                         .neq('status', 'paid')
                         .gt('amount_paid', 0)
                         .eq('invoice_period', targetPeriode)
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 while (true) {
                     const { data: paidChunk, error: paidErrChunk } = await supabase
                         .from('invoices')
-                        .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                        .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                         .eq('status', 'paid')
                         .eq('invoice_period', targetPeriode)
                         .order('paid_at', { ascending: false })
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Ambil data Unpaid tanpa filter (hanya unpaid, tidak termasuk partially_paid)
                 const { data: unpaid, error: unpaidErr } = await supabase
                     .from('invoices')
-                    .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                    .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                     .eq('status', 'unpaid')
                     .order('created_at', { ascending: false });
                 if (unpaidErr) throw unpaidErr;
@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const { data: installment, error: installmentErr } = await supabase
                         .from('invoices')
-                        .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                        .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                         .eq('status', 'partially_paid')
                         .order('created_at', { ascending: false });
                     if (installmentErr) throw installmentErr;
@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Fallback: ambil data berdasarkan kondisi amount_paid > 0 dan status != 'paid'
                     const { data: installmentFallback, error: fallbackErr } = await supabase
                         .from('invoices')
-                        .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                        .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                         .neq('status', 'paid')
                         .gt('amount_paid', 0)
                         .order('created_at', { ascending: false });
@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 while (true) {
                     const { data: paidChunk, error: paidErrChunk } = await supabase
                         .from('invoices')
-                        .select(`id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (full_name, idpl, whatsapp_number)`)
+                        .select(`id, customer_id, invoice_period, amount, total_due, amount_paid, status, paid_at, payment_method, broadcast_count, profiles (id, full_name, idpl, whatsapp_number)`)
                         .eq('status', 'paid')
                         .order('paid_at', { ascending: false })
                         .range(page * CHUNK_SIZE, (page + 1) * CHUNK_SIZE - 1);
