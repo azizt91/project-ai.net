@@ -12,7 +12,7 @@ CREATE TABLE public.app_settings (
   icon_192_url text DEFAULT 'assets/logo_192x192.png'::text,
   icon_512_url text DEFAULT 'assets/logo_512x512.png'::text,
   whatsapp_number text DEFAULT '6281914170701'::text,
-  support_email text DEFAULT 'support@gardunetwork.com'::text,
+  support_email text DEFAULT 'support@ainetwork.com'::text,
   office_address text DEFAULT ''::text,
   offline_payment_name text DEFAULT 'Bapak Karsadi dan Ibu Sopiyah'::text,
   offline_payment_address text DEFAULT 'Dukuh Sekiyong RT 04/RW 07, Desa Pamutih'::text,

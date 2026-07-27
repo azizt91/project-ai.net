@@ -89,7 +89,7 @@ _____________________________
 ),
 (
     'app_url',
-    'http://gardunetwork.netlify.app/',
+    'http://ai-net-billing.netlify.app/',
     true
 ),
 (

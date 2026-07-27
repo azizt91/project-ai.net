@@ -131,7 +131,7 @@ export default class AppSettings {
 
         // Load WhatsApp settings separately
         await this.loadWhatsAppSettings();
-        
+
         // Load GenieACS settings separately
         await this.loadGenieACSSettings();
     }
@@ -209,7 +209,7 @@ export default class AppSettings {
             icon_192_url: 'assets/logo_192x192.png',
             icon_512_url: 'assets/logo_512x512.png',
             whatsapp_number: '6281914170701',
-            support_email: 'support@gardunetwork.com',
+            support_email: 'support@ainetwork.com',
             office_address: '',
             offline_payment_name: 'Bapak Karsadi dan Ibu Sopiyah',
             offline_payment_address: 'Dukuh Sekiyong RT 04/RW 07, Desa Pamutih',
@@ -284,7 +284,7 @@ export default class AppSettings {
     async saveSettings() {
         const appName = document.getElementById('app-name-input').value.trim();
         const whatsapp = document.getElementById('whatsapp-input').value.trim();
-        
+
         if (!appName) {
             alert('Nama aplikasi tidak boleh kosong');
             return;
@@ -298,23 +298,23 @@ export default class AppSettings {
 
         try {
             // Upload all images if changed
-            const logoUrl = this.uploadedFiles.logo 
+            const logoUrl = this.uploadedFiles.logo
                 ? await this.uploadImage(this.uploadedFiles.logo, 'logos')
                 : document.getElementById('logo-preview').src;
 
-            const faviconUrl = this.uploadedFiles.favicon 
+            const faviconUrl = this.uploadedFiles.favicon
                 ? await this.uploadImage(this.uploadedFiles.favicon, 'favicons')
                 : document.getElementById('favicon-preview').src;
 
-            const icon192Url = this.uploadedFiles.icon192 
+            const icon192Url = this.uploadedFiles.icon192
                 ? await this.uploadImage(this.uploadedFiles.icon192, 'icons')
                 : document.getElementById('icon-192-preview').src;
 
-            const icon512Url = this.uploadedFiles.icon512 
+            const icon512Url = this.uploadedFiles.icon512
                 ? await this.uploadImage(this.uploadedFiles.icon512, 'icons')
                 : document.getElementById('icon-512-preview').src;
 
-            const qrisUrl = this.uploadedFiles.qris 
+            const qrisUrl = this.uploadedFiles.qris
                 ? await this.uploadImage(this.uploadedFiles.qris, 'qris')
                 : document.getElementById('qris-preview').src;
 
@@ -524,7 +524,7 @@ export default class AppSettings {
             for (const setting of whatsappSettings) {
                 const { error } = await supabase
                     .from('whatsapp_settings')
-                    .update({ 
+                    .update({
                         setting_value: setting.setting_value,
                         updated_at: new Date().toISOString()
                     })
@@ -595,7 +595,7 @@ _____________________________
             for (const setting of genieacsSettings) {
                 const { error } = await supabase
                     .from('genieacs_settings')
-                    .update({ 
+                    .update({
                         setting_value: setting.setting_value,
                         updated_at: new Date().toISOString()
                     })

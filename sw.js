@@ -1,5 +1,5 @@
 // Service Worker untuk PWA AI.NET
-const CACHE_NAME = 'gardunetwork-v1.5.2';
+const CACHE_NAME = 'ainetwork-v1.5.2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -25,7 +25,7 @@ const urlsToCache = [
   '/pelanggan_riwayat_lunas.js',
   '/pelanggan_info.js',
   '/profile.js',
-  '/assets/gardunetwork.png',
+  '/assets/ainetwork.png',
   '/manifest.json',
   'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
@@ -74,14 +74,14 @@ self.addEventListener('fetch', (event) => {
         if (response) {
           return response;
         }
-        
+
         // For API calls, try network first, then show offline message
         if (event.request.url.includes('/api/') || event.request.url.includes('localhost:3000')) {
           return fetch(event.request).catch(() => {
             // Return a custom offline response for API calls
             return new Response(
-              JSON.stringify({ 
-                message: 'Aplikasi sedang offline. Silakan coba lagi ketika koneksi internet tersedia.' 
+              JSON.stringify({
+                message: 'Aplikasi sedang offline. Silakan coba lagi ketika koneksi internet tersedia.'
               }),
               {
                 status: 503,
@@ -91,7 +91,7 @@ self.addEventListener('fetch', (event) => {
             );
           });
         }
-        
+
         // For other requests, try network first
         return fetch(event.request).catch(() => {
           // If network fails, return cached version if available
@@ -114,15 +114,15 @@ self.addEventListener('push', (event) => {
   if (event.data) {
     const options = {
       body: event.data.text(),
-      icon: '/assets/gardunetwork.png',
-      badge: '/assets/gardunetwork.png',
+      icon: '/assets/ainetwork.png',
+      badge: '/assets/ainetwork.png',
       vibrate: [200, 100, 200],
       data: {
         dateOfArrival: Date.now(),
         primaryKey: 1
       }
     };
-    
+
     event.waitUntil(
       self.registration.showNotification('AI.NET', options)
     );
@@ -133,7 +133,7 @@ self.addEventListener('push', (event) => {
 self.addEventListener('notificationclick', (event) => {
   console.log('Notification clicked, opening notification center.');
   event.notification.close();
-  
+
   // Arahkan ke HALAMAN NOTIFIKASI BARU
   event.waitUntil(
     clients.openWindow('/notifikasi.html')

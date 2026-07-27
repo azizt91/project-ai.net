@@ -94,27 +94,27 @@ export function initializeCSVImport(fetchDataCallback) {
 
         const sampleData = [
             [
-                'import1@gardunetwork.com', 'password123', 'John Doe', 'Jl. Merdeka No 1 RT 02 RW 03 Bandung',
+                'import1@ainetwork.com', 'password123', 'John Doe', 'Jl. Merdeka No 1 RT 02 RW 03 Bandung',
                 '08123456789', 'LAKI-LAKI', 'AKTIF', '1', '150000', '2024-01-15',
                 '-6.9174639', '107.6191228', 'ONT ZTE F609', '192.168.1.100'
             ],
             [
-                'import2@gardunetwork.com', 'password456', 'Jane Smith', 'Jl. Sudirman No 25 RT 01 RW 02 Jakarta',
+                'import2@ainetwork.com', 'password456', 'Jane Smith', 'Jl. Sudirman No 25 RT 01 RW 02 Jakarta',
                 '08198765432', 'PEREMPUAN', 'AKTIF', '1', '150000', '2024-03-20',
                 '-6.9147444', '107.6098111', 'ONT Huawei HG8245H', '192.168.1.101'
             ],
             [
-                'import3@gardunetwork.com', 'password789', 'Bob Wilson', 'Jl. Asia Afrika No 3 RT 05 RW 01 Surabaya',
+                'import3@ainetwork.com', 'password789', 'Bob Wilson', 'Jl. Asia Afrika No 3 RT 05 RW 01 Surabaya',
                 '08111222333', 'LAKI-LAKI', 'AKTIF', '1', '150000', '2023-12-01',
                 '', '', 'Router Mikrotik RB750', ''
             ],
             [
-                'import4@gardunetwork.com', 'mypass2024', 'Alice Brown', 'Jl. Gatot Subroto No 12 RT 03 RW 04 Semarang',
+                'import4@ainetwork.com', 'mypass2024', 'Alice Brown', 'Jl. Gatot Subroto No 12 RT 03 RW 04 Semarang',
                 '08567891234', 'PEREMPUAN', 'AKTIF', '1', '150000', '2024-02-10',
                 '-7.0051453', '110.4381254', 'ONT ZTE F660', '192.168.1.102'
             ],
             [
-                'import5@gardunetwork.com', 'secure123', 'Charlie Davis', 'Jl. Diponegoro No 88 RT 02 RW 01 Yogyakarta',
+                'import5@ainetwork.com', 'secure123', 'Charlie Davis', 'Jl. Diponegoro No 88 RT 02 RW 01 Yogyakarta',
                 '08234567890', 'LAKI-LAKI', 'AKTIF', '1', '150000', '2023-11-05',
                 '-7.7955798', '110.3694896', 'ONT Fiberhome AN5506', '192.168.1.103'
             ]
@@ -430,11 +430,11 @@ export function initializeCSVImport(fetchDataCallback) {
                     if (typeof error.context.json === 'function') {
                         errorBody = await error.context.json();
                     } else if (error.context.body) {
-                        errorBody = typeof error.context.body === 'string' 
-                            ? JSON.parse(error.context.body) 
+                        errorBody = typeof error.context.body === 'string'
+                            ? JSON.parse(error.context.body)
                             : JSON.parse(await new Response(error.context.body).text());
                     }
-                    
+
                     if (errorBody && errorBody.error) {
                         errorMsg = errorBody.error;
                     }

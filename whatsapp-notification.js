@@ -13,9 +13,9 @@ async function invokeWhatsappFunction(target, message) {
         console.error('Supabase function invocation failed:', error);
         return { success: false, message: `Error memanggil fungsi: ${error.message}` };
     }
-    
+
     console.log('Respons dari Supabase function:', data);
-    
+
     if (data && data.success === false) {
         console.error('Error dari dalam function:', data.message);
         return { success: false, message: `API Error: ${data.message}` };
@@ -83,7 +83,7 @@ export async function sendCustomerPaymentNotification(customerData, invoiceData,
     if (target.startsWith('0')) {
         target = '62' + target.substring(1);
     }
-    
+
     const paymentMethodText = { 'cash': 'Tunai', 'transfer': 'Transfer Bank', 'ewallet': 'E-Wallet', 'qris': 'QRIS' }[paymentMethod] || 'Tunai';
 
     // Get template
@@ -98,7 +98,7 @@ export async function sendCustomerPaymentNotification(customerData, invoiceData,
         .replace(/{jumlah_dibayar}/g, formatter.format(invoiceData.amount))
         .replace(/{sisa_tagihan}/g, formatter.format(invoiceData.remaining_amount || 0))
         .replace(/{metode_pembayaran}/g, paymentMethodText)
-        .replace(/{app_url}/g, settings.app_url || 'http://gardunetwork.netlify.app/')
+        .replace(/{app_url}/g, settings.app_url || 'http://ai-net-billing.netlify.app/')
         .replace(/{email_pelanggan}/g, customerEmail)
         .replace(/{pesan_custom}/g, '');
 
@@ -141,14 +141,14 @@ function showNotification(message, bgColor, icon) {
     const notification = document.createElement('div');
     notification.style.cssText = `position: fixed; top: 20px; right: 20px; background-color: ${bgColor}; color: white; padding: 15px 20px; border-radius: 8px; z-index: 1002; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); animation: slideInRight 0.3s ease;`;
     notification.innerHTML = `<div style="display: flex; align-items: center; gap: 10px;"><span>${icon}</span><span>${message}</span></div>`;
-    
+
     if (!document.getElementById('notification-styles')) {
         const style = document.createElement('style');
         style.id = 'notification-styles';
         style.textContent = `@keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }`;
         document.head.appendChild(style);
     }
-    
+
     document.body.appendChild(notification);
     setTimeout(() => {
         if (notification.parentNode) {

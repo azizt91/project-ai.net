@@ -674,6 +674,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Failed to save template', e);
             }
 
+            // Ambil app_url dari database
+            let appUrl = 'http://ai-net-billing.netlify.app/';
+            try {
+                const { data: urlData } = await supabase
+                    .from('whatsapp_settings')
+                    .select('setting_value')
+                    .eq('setting_key', 'app_url')
+                    .single();
+                if (urlData && urlData.setting_value) {
+                    appUrl = urlData.setting_value;
+                }
+            } catch (e) {
+                console.error('Failed to get app_url:', e);
+            }
+
             // Ambil invoice IDs yang akan diproses batch ini
             const batchIds = checkedBoxes.slice(0, limit).map(cb => cb.value);
             hideModal();
@@ -696,6 +711,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     continue;
                 }
 
+                // Ambil email pelanggan
+                let customerEmail = '-';
+                try {
+                    const { data: email } = await supabase.rpc('get_user_email', {
+                        user_id: invoice.customer_id || invoice.profiles.id
+                    });
+                    if (email) customerEmail = email;
+                } catch (err) {
+                    console.error("Gagal mengambil email pelanggan:", err);
+                }
+
                 const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 });
                 let target = String(invoice.profiles.whatsapp_number).replace(/[^0-9]/g, '');
                 if (target.startsWith('0')) target = '62' + target.substring(1);
@@ -708,8 +734,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     .replace(/{jumlah_dibayar}/g, formatter.format(invoice.amount_paid || 0))
                     .replace(/{sisa_tagihan}/g, formatter.format(Math.max(0, invoice.amount - (invoice.amount_paid || 0))))
                     .replace(/{metode_pembayaran}/g, invoice.payment_method || '-')
-                    .replace(/{app_url}/g, 'http://gardunetwork.netlify.app/')
-                    .replace(/{email_pelanggan}/g, '-')
+                    .replace(/{app_url}/g, appUrl)
+                    .replace(/{email_pelanggan}/g, customerEmail)
                     .replace(/{pesan_custom}/g, '');
 
                 try {
@@ -1183,10 +1209,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function sendWhatsAppMessage(rowData) {
         let customTemplate = `Informasi Tagihan WiFi Anda\n\nHai Bapak/Ibu {nama_pelanggan},\nID Pelanggan: {idpl}\n\nInformasi tagihan Bapak/Ibu bulan ini adalah:\nJumlah Tagihan: {total_tagihan}\nPeriode Tagihan: {periode}\n\nBayar tagihan Anda di salah satu rekening di bawah ini:\n- Seabank 901307925714 An. TAUFIQ AZIZ\n- BCA 3621053653 An. TAUFIQ AZIZ\n- BSI 7211806138 An. TAUFIQ AZIZ\n- Dana 089609497390 An. TAUFIQ AZIZ\n\nTerima kasih atas kepercayaan Anda menggunakan layanan kami.\n_____________________________\n*Ini adalah pesan otomatis. Jika telah membayar tagihan, abaikan pesan ini.`;
+        let appUrl = 'http://ai-net-billing.netlify.app/';
+        let customerEmail = '-';
         try {
-            const { data } = await supabase.from('whatsapp_settings').select('setting_value').eq('setting_key', 'template_custom_message').single();
-            if (data && data.setting_value) customTemplate = data.setting_value;
-        } catch (e) { }
+            const { data: settingsData } = await supabase
+                .from('whatsapp_settings')
+                .select('setting_key, setting_value')
+                .in('setting_key', ['template_custom_message', 'app_url']);
+            
+            if (settingsData) {
+                const templateObj = settingsData.find(s => s.setting_key === 'template_custom_message');
+                const urlObj = settingsData.find(s => s.setting_key === 'app_url');
+                if (templateObj && templateObj.setting_value) customTemplate = templateObj.setting_value;
+                if (urlObj && urlObj.setting_value) appUrl = urlObj.setting_value;
+            }
+
+            if (rowData && rowData.profiles) {
+                const { data: email } = await supabase.rpc('get_user_email', {
+                    user_id: rowData.customer_id || rowData.profiles.id
+                });
+                if (email) customerEmail = email;
+            }
+        } catch (e) {
+            console.error('Error fetching settings or customer email:', e);
+        }
+
         if (!rowData || !rowData.profiles) {
             showErrorNotification('Data pelanggan tidak valid untuk mengirim WhatsApp');
             return;
@@ -1212,8 +1259,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/{jumlah_dibayar}/g, new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(rowData.amount_paid || 0))
             .replace(/{sisa_tagihan}/g, new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Math.max(0, rowData.amount - (rowData.amount_paid || 0))))
             .replace(/{metode_pembayaran}/g, rowData.payment_method || '-')
-            .replace(/{app_url}/g, 'http://gardunetwork.netlify.app/')
-            .replace(/{email_pelanggan}/g, '-')
+            .replace(/{app_url}/g, appUrl)
+            .replace(/{email_pelanggan}/g, customerEmail)
             .replace(/{pesan_custom}/g, '');
 
         let cleanedNumber = String(whatsappNumber).replace(/[^0-9+]/g, '');
