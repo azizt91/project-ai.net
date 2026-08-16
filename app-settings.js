@@ -200,8 +200,8 @@ export default class AppSettings {
 
     getDefaultSettings() {
         return {
-            app_name: 'AI.NET',
-            app_short_name: 'AI.NET',
+            app_name: 'WIN.NET',
+            app_short_name: 'WIN.NET',
             app_description: 'Sistem manajemen pelanggan ISP',
             app_tagline: 'Kelola pelanggan dengan mudah',
             logo_url: 'assets/sn-blue.png',
@@ -451,7 +451,7 @@ export default class AppSettings {
 
     applySettings(settings) {
         // Update title
-        document.title = settings.app_name || 'AI.NET';
+        document.title = settings.app_name || 'WIN.NET';
 
         // Update favicon
         this.updateFavicon(settings.favicon_url);
@@ -557,7 +557,7 @@ ID Pelanggan: {idpl}
 {pesan_custom}
 
 _____________________________
-*Pesan otomatis dari AI.NET*`
+*Pesan otomatis dari WIN.NET*`
             };
 
             // Update templates in form

@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tagihan - AI.NET</title>
+  <title>Tagihan - WIN.NET</title>
 
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#f9f8fb">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="AI.NET">
+  <meta name="apple-mobile-web-app-title" content="WIN.NET">
   <meta name="description" content="Manajemen tagihan ISP">
 
   <!-- PWA Icons -->
@@ -171,11 +171,16 @@
           <div id="broadcast-actions-container" class="hidden px-4 py-2 bg-[#f9f8fb] border-b border-gray-200">
             <div class="flex items-center justify-between">
               <label class="flex items-center gap-2 text-sm font-medium text-[#110e1b] cursor-pointer">
-                <input type="checkbox" id="check-all-broadcast" class="w-4 h-4 rounded border-gray-300 text-green-500 focus:ring-green-500">
+                <input type="checkbox" id="check-all-broadcast"
+                  class="w-4 h-4 rounded border-gray-300 text-green-500 focus:ring-green-500">
                 Pilih Semua
               </label>
-              <button id="btn-show-broadcast-modal" class="hidden flex items-center justify-center gap-2 h-8 px-3 bg-green-500 hover:bg-green-600 text-white rounded-lg text-xs font-medium transition-colors shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" /></svg>
+              <button id="btn-show-broadcast-modal"
+                class="hidden flex items-center justify-center gap-2 h-8 px-3 bg-green-500 hover:bg-green-600 text-white rounded-lg text-xs font-medium transition-colors shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                </svg>
                 Broadcast (<span id="broadcast-selected-count">0</span>)
               </button>
             </div>
@@ -439,32 +444,44 @@
   </div>
 
   <!-- Broadcast WhatsApp Modal -->
-  <div id="broadcast-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 font-sans backdrop-blur-sm transition-opacity">
+  <div id="broadcast-modal"
+    class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 font-sans backdrop-blur-sm transition-opacity">
     <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
       <div class="bg-green-500 p-4 flex items-center justify-between text-white shrink-0">
         <h3 class="text-lg font-bold flex items-center gap-2">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" /></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+          </svg>
           Broadcast WhatsApp
         </h3>
         <button id="close-broadcast-modal" class="text-white hover:text-green-200 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
         </button>
       </div>
-      
+
       <div class="p-4 overflow-y-auto">
         <div class="bg-blue-50 text-blue-800 text-sm p-3 rounded-lg border border-blue-100 mb-4 flex gap-2">
-          <svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          <p>Pesan akan dikirim ke <span id="broadcast-info-count" class="font-bold">0</span> pelanggan. Template ini juga akan tersimpan sebagai template default untuk pesan WA manual.</p>
+          <svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <p>Pesan akan dikirim ke <span id="broadcast-info-count" class="font-bold">0</span> pelanggan. Template ini
+            juga akan tersimpan sebagai template default untuk pesan WA manual.</p>
         </div>
 
         <div class="mb-4">
           <label class="block text-sm font-bold text-gray-700 mb-1">Isi Pesan:</label>
-          <textarea id="broadcast-message-template" rows="8" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 resize-y" placeholder="Ketik pesan Anda di sini..."></textarea>
+          <textarea id="broadcast-message-template" rows="8"
+            class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 resize-y"
+            placeholder="Ketik pesan Anda di sini..."></textarea>
           <div class="text-xs text-gray-500 mt-2 bg-gray-50 p-2 rounded border border-gray-100">
             <span class="font-bold text-orange-500 mb-1 block">Variabel yang didukung:</span>
-            <code class="text-pink-600 bg-pink-50 px-1 rounded">{nama_pelanggan}</code>, 
+            <code class="text-pink-600 bg-pink-50 px-1 rounded">{nama_pelanggan}</code>,
             <code class="text-pink-600 bg-pink-50 px-1 rounded">{idpl}</code>,
-            <code class="text-pink-600 bg-pink-50 px-1 rounded">{periode}</code>, 
+            <code class="text-pink-600 bg-pink-50 px-1 rounded">{periode}</code>,
             <code class="text-pink-600 bg-pink-50 px-1 rounded">{total_tagihan}</code>
           </div>
         </div>
@@ -472,17 +489,25 @@
         <div class="mb-2">
           <label class="block text-sm font-bold text-gray-700 mb-1">Limit Per-Batch:</label>
           <div class="flex gap-2">
-            <input type="number" id="broadcast-batch-limit" value="20" min="1" class="w-24 border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-green-500 focus:border-green-500">
-            <button id="btn-release-limit" type="button" class="px-3 py-2 text-sm border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors">Lepas Limit</button>
+            <input type="number" id="broadcast-batch-limit" value="20" min="1"
+              class="w-24 border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-green-500 focus:border-green-500">
+            <button id="btn-release-limit" type="button"
+              class="px-3 py-2 text-sm border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors">Lepas
+              Limit</button>
           </div>
-          <p class="text-[11px] text-red-500 mt-1 leading-tight">Untuk menghindari blokir WhatsApp, jangan kirim secara massal sekaligus. Jeda 10-15 menit antar batch.</p>
+          <p class="text-[11px] text-red-500 mt-1 leading-tight">Untuk menghindari blokir WhatsApp, jangan kirim secara
+            massal sekaligus. Jeda 10-15 menit antar batch.</p>
         </div>
       </div>
 
       <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-3 shrink-0">
-        <button id="cancel-broadcast-btn" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Batal</button>
-        <button id="confirm-broadcast-btn" class="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        <button id="cancel-broadcast-btn"
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Batal</button>
+        <button id="confirm-broadcast-btn"
+          class="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+          </svg>
           Kirim Sekarang
         </button>
       </div>
@@ -490,27 +515,32 @@
   </div>
 
   <!-- Create Monthly Invoice Modal -->
-  <div id="create-invoice-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 font-sans backdrop-blur-sm transition-opacity">
+  <div id="create-invoice-modal"
+    class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 font-sans backdrop-blur-sm transition-opacity">
     <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden flex flex-col">
       <div class="bg-[#5324e0] p-4 flex items-center justify-between text-white shrink-0">
         <h3 class="text-lg font-bold flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           Buat Tagihan Bulanan
         </h3>
-        <button id="close-create-invoice-modal" class="text-white hover:text-purple-200 transition-colors text-2xl leading-none">&times;</button>
+        <button id="close-create-invoice-modal"
+          class="text-white hover:text-purple-200 transition-colors text-2xl leading-none">&times;</button>
       </div>
-      
+
       <div class="p-5 space-y-4">
         <p class="text-sm text-gray-600">
-          Pilih bulan dan tahun untuk membuat tagihan bagi semua pelanggan aktif yang belum memiliki tagihan pada periode tersebut.
+          Pilih bulan dan tahun untuk membuat tagihan bagi semua pelanggan aktif yang belum memiliki tagihan pada
+          periode tersebut.
         </p>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-bold text-gray-700 mb-1">Bulan</label>
-            <select id="create-invoice-month" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-[#5324e0] focus:border-[#5324e0] bg-white">
+            <select id="create-invoice-month"
+              class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-[#5324e0] focus:border-[#5324e0] bg-white">
               <option value="1">Januari</option>
               <option value="2">Februari</option>
               <option value="3">Maret</option>
@@ -528,16 +558,21 @@
 
           <div>
             <label class="block text-sm font-bold text-gray-700 mb-1">Tahun</label>
-            <select id="create-invoice-year" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-[#5324e0] focus:border-[#5324e0] bg-white">
+            <select id="create-invoice-year"
+              class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-[#5324e0] focus:border-[#5324e0] bg-white">
             </select>
           </div>
         </div>
       </div>
 
       <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-3 shrink-0">
-        <button id="cancel-create-invoice-btn" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Batal</button>
-        <button id="confirm-create-invoice-btn" class="px-4 py-2 text-sm font-medium text-white bg-[#5324e0] rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2 shadow-md">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <button id="cancel-create-invoice-btn"
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Batal</button>
+        <button id="confirm-create-invoice-btn"
+          class="px-4 py-2 text-sm font-medium text-white bg-[#5324e0] rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2 shadow-md">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
           Buat Tagihan
         </button>
       </div>

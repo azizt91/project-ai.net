@@ -38,7 +38,7 @@ Login di:
 *- Password:* password
 
 _____________________________
-*Pesan otomatis dari AI.NET*',
+*Pesan otomatis dari WIN.NET*',
     true
 ),
 (
@@ -66,7 +66,7 @@ Login di:
 *- Password:* password
 
 _____________________________
-*Pesan otomatis dari AI.NET*',
+*Pesan otomatis dari WIN.NET*',
     true
 ),
 (
@@ -79,7 +79,7 @@ ID Pelanggan: {idpl}
 {pesan_custom}
 
 _____________________________
-*Pesan dari AI.NET*',
+*Pesan dari WIN.NET*',
     true
 ),
 (

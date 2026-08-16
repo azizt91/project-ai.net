@@ -9,16 +9,16 @@ class PWAInstaller {
     init() {
         // Register Service Worker
         this.registerServiceWorker();
-        
+
         // Handle beforeinstallprompt event
         this.handleInstallPrompt();
-        
+
         // Check if app is already installed
         this.checkInstallStatus();
-        
+
         // Handle app state changes
         this.handleAppStateChanges();
-        
+
         // Add install button if not installed
         this.addInstallButton();
     }
@@ -28,7 +28,7 @@ class PWAInstaller {
             try {
                 const registration = await navigator.serviceWorker.register('/sw.js');
                 console.log('PWA: Service Worker registered successfully', registration);
-                
+
                 // Handle service worker updates
                 registration.addEventListener('updatefound', () => {
                     const newWorker = registration.installing;
@@ -57,13 +57,13 @@ class PWAInstaller {
             console.log('PWA: App installed successfully');
             this.isInstalled = true;
             this.hideInstallButton();
-            this.showSuccessMessage('AI.NET berhasil diinstall!');
+            this.showSuccessMessage('WIN.NET berhasil diinstall!');
         });
     }
 
     checkInstallStatus() {
         // Check if running in standalone mode (installed)
-        if (window.matchMedia('(display-mode: standalone)').matches || 
+        if (window.matchMedia('(display-mode: standalone)').matches ||
             window.navigator.standalone === true) {
             this.isInstalled = true;
         }
@@ -147,13 +147,13 @@ class PWAInstaller {
         if (this.deferredPrompt) {
             this.deferredPrompt.prompt();
             const { outcome } = await this.deferredPrompt.userChoice;
-            
+
             if (outcome === 'accepted') {
                 console.log('PWA: User accepted install prompt');
             } else {
                 console.log('PWA: User dismissed install prompt');
             }
-            
+
             this.deferredPrompt = null;
             this.hideInstallButton();
         }
@@ -187,9 +187,9 @@ class PWAInstaller {
                 ">Refresh</button>
             </div>
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         // Auto remove after 10 seconds
         setTimeout(() => {
             if (notification.parentNode) {
@@ -217,9 +217,9 @@ class PWAInstaller {
                 <span>${message}</span>
             </div>
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.parentNode.removeChild(notification);
@@ -255,9 +255,9 @@ class PWAInstaller {
                 <span>${message}</span>
             </div>
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.parentNode.removeChild(notification);

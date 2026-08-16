@@ -6,7 +6,7 @@ import { getWhatsAppNumber, getOfflinePaymentInfo, getQRISInfo } from './apply-s
 let currentUser = null;
 let currentProfile = null;
 
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     // Check authentication and require USER role
     currentUser = await requireRole('USER');
     if (!currentUser) return; // Stop if not authenticated or not USER role
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // DOM Elements
     const confirmTransferBtn = document.getElementById('confirm-transfer-btn');
     const contactLocationBtn = document.getElementById('contact-location-btn');
-    
+
     // Initialize event listeners
     initializeEventListeners();
 
@@ -70,35 +70,35 @@ document.addEventListener('DOMContentLoaded', async function() {
     // ===============================================
     // Copy to Clipboard Functionality
     // ===============================================
-    window.copyToClipboard = function(elementId, buttonElement) {
+    window.copyToClipboard = function (elementId, buttonElement) {
         const textElement = document.getElementById(elementId);
         const textToCopy = textElement.textContent.trim();
-        
+
         // Create a temporary textarea element
         const tempTextarea = document.createElement('textarea');
         tempTextarea.value = textToCopy;
         document.body.appendChild(tempTextarea);
-        
+
         try {
             // Select and copy the text
             tempTextarea.select();
             tempTextarea.setSelectionRange(0, 99999); // For mobile devices
             document.execCommand('copy');
-            
+
             // Update button appearance
             const originalIcon = buttonElement.innerHTML;
             buttonElement.innerHTML = '<i class="fas fa-check"></i>';
             buttonElement.classList.add('copied');
-            
+
             // Show toast notification
             showToast(`Nomor rekening ${textToCopy} berhasil disalin!`, 'success');
-            
+
             // Reset button after 2 seconds
             setTimeout(() => {
                 buttonElement.innerHTML = originalIcon;
                 buttonElement.classList.remove('copied');
             }, 2000);
-            
+
         } catch (err) {
             console.error('Failed to copy text: ', err);
             showToast('Gagal menyalin nomor rekening. Silakan salin manual.', 'error');
@@ -116,13 +116,13 @@ document.addEventListener('DOMContentLoaded', async function() {
             // Use current profile data for personalized message
             const customerName = currentProfile ? currentProfile.full_name : currentUser.email;
             const customerIdpl = currentProfile ? currentProfile.idpl : 'N/A';
-            
+
             // Create WhatsApp message
             const message = createTransferConfirmationMessage(customerName, customerIdpl);
-            
+
             // Send to WhatsApp
             sendWhatsAppMessage(message);
-            
+
         } catch (error) {
             console.error('Error creating transfer confirmation:', error);
             // Fallback to basic message
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             month: 'long',
             day: 'numeric'
         });
-        
+
         const currentTime = new Date().toLocaleTimeString('id-ID', {
             hour: '2-digit',
             minute: '2-digit'
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         return `🏦 *KONFIRMASI PEMBAYARAN TRANSFER*
 
-Halo Admin AI.NET,
+Halo Admin WIN.NET,
 
 Saya ingin mengkonfirmasi pembayaran tagihan internet:
 
@@ -169,13 +169,13 @@ Bukti transfer akan saya kirim setelah pesan ini.
 
 Terima kasih! 🙏
 
-_Pesan otomatis dari aplikasi AI.NET_`;
+_Pesan otomatis dari aplikasi WIN.NET_`;
     }
 
     function createLocationRequestMessage(customerName, idpl) {
         return `📍 *PERMINTAAN ALAMAT LENGKAP*
 
-Halo Admin AI.NET,
+Halo Admin WIN.NET,
 
 Saya ingin mendapatkan alamat lengkap untuk pembayaran langsung:
 
@@ -190,17 +190,17 @@ Mohon dikirimkan:
 
 Terima kasih! 🙏
 
-_Pesan otomatis dari aplikasi AI.NET_`;
+_Pesan otomatis dari aplikasi WIN.NET_`;
     }
 
     function sendWhatsAppMessage(message) {
         const whatsappNumber = getWhatsAppNumber(); // Get from app settings
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-        
+
         // Open WhatsApp in new tab
         window.open(whatsappUrl, '_blank');
-        
+
         // Show confirmation toast
         showToast('Mengarahkan ke WhatsApp...', 'info');
     }
@@ -211,7 +211,7 @@ _Pesan otomatis dari aplikasi AI.NET_`;
     async function fetchCurrentProfile() {
         try {
             console.log('Fetching profile for user:', currentUser.id);
-            
+
             // Fetch current customer profile from Supabase
             const { data: profile, error: profileError } = await supabase
                 .from('profiles')
@@ -229,7 +229,7 @@ _Pesan otomatis dari aplikasi AI.NET_`;
 
             currentProfile = profile;
             console.log('Customer profile loaded:', profile);
-            
+
             return profile;
         } catch (error) {
             console.error('Error fetching customer profile:', error);
@@ -241,19 +241,19 @@ _Pesan otomatis dari aplikasi AI.NET_`;
         try {
             // Get offline payment info from settings
             const offlineInfo = getOfflinePaymentInfo();
-            
+
             // Update HTML elements
             const nameElement = document.getElementById('offline-payment-name');
             const addressElement = document.getElementById('offline-payment-address');
-            
+
             if (nameElement) {
                 nameElement.textContent = offlineInfo.name;
             }
-            
+
             if (addressElement) {
                 addressElement.textContent = offlineInfo.address;
             }
-            
+
             console.log('Offline payment info applied:', offlineInfo);
         } catch (error) {
             console.error('Error applying offline payment info:', error);
@@ -265,12 +265,12 @@ _Pesan otomatis dari aplikasi AI.NET_`;
         try {
             // Get QRIS info from settings
             const qrisInfo = getQRISInfo();
-            
+
             // Find QRIS card element (parent div of qris-image)
             const qrisImage = document.getElementById('qris-image');
             const qrisCard = qrisImage?.closest('.bg-white.p-4.rounded-lg');
             const qrisModal = document.getElementById('qris-modal');
-            
+
             if (!qrisCard) {
                 console.warn('QRIS card element not found');
                 return;
@@ -281,24 +281,24 @@ _Pesan otomatis dari aplikasi AI.NET_`;
                 // Show QRIS
                 qrisCard.classList.remove('hidden');
                 if (qrisModal) qrisModal.classList.remove('hidden');
-                
+
                 // Update image URL
                 if (qrisImage) {
                     qrisImage.src = qrisInfo.imageUrl;
                 }
-                
+
                 // Update modal image if exists
                 const modalImage = qrisModal?.querySelector('img');
                 if (modalImage) {
                     modalImage.src = qrisInfo.imageUrl;
                 }
-                
+
                 console.log('QRIS displayed with image:', qrisInfo.imageUrl);
             } else {
                 // Hide QRIS
                 qrisCard.classList.add('hidden');
                 if (qrisModal) qrisModal.classList.add('hidden');
-                
+
                 console.log('QRIS hidden (show_qris = false)');
             }
         } catch (error) {
@@ -377,16 +377,16 @@ _Pesan otomatis dari aplikasi AI.NET_`;
     function showToast(message, type = 'info') {
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toast-message');
-        
+
         if (!toast || !toastMessage) return;
-        
+
         // Set message and type
         toastMessage.textContent = message;
         toast.className = `toast toast-${type}`;
-        
+
         // Show toast
         toast.classList.add('show');
-        
+
         // Hide after 3 seconds
         setTimeout(() => {
             toast.classList.remove('show');
@@ -398,14 +398,14 @@ _Pesan otomatis dari aplikasi AI.NET_`;
     // ===============================================
     function addCardHoverEffects() {
         const bankCards = document.querySelectorAll('.bank-card');
-        
+
         bankCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
+            card.addEventListener('mouseenter', function () {
                 this.style.transform = 'translateY(-2px)';
                 this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
             });
-            
-            card.addEventListener('mouseleave', function() {
+
+            card.addEventListener('mouseleave', function () {
                 this.style.transform = 'translateY(0)';
                 this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
             });

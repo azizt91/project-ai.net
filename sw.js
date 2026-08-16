@@ -1,4 +1,4 @@
-// Service Worker untuk PWA AI.NET
+// Service Worker untuk PWA WIN.NET
 const CACHE_NAME = 'ainetwork-v1.5.2';
 const urlsToCache = [
   '/',
@@ -124,7 +124,7 @@ self.addEventListener('push', (event) => {
     };
 
     event.waitUntil(
-      self.registration.showNotification('AI.NET', options)
+      self.registration.showNotification('WIN.NET', options)
     );
   }
 });

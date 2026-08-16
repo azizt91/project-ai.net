@@ -1537,8 +1537,8 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.app_settings (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
-    app_name text DEFAULT 'AI.NET'::text NOT NULL,
-    app_short_name text DEFAULT 'AI.NET'::text NOT NULL,
+    app_name text DEFAULT 'WIN.NET'::text NOT NULL,
+    app_short_name text DEFAULT 'WIN.NET'::text NOT NULL,
     app_description text DEFAULT 'Sistem manajemen pelanggan ISP'::text,
     app_tagline text DEFAULT 'Kelola pelanggan dengan mudah'::text,
     logo_url text DEFAULT 'assets/logo_192x192.png'::text NOT NULL,

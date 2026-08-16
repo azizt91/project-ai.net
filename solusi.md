@@ -6,7 +6,7 @@ Rest API mikrotik saya sudah berjalan, bagaimana agar bisa di integrasikan denga
 Rest API mikrotik saya : http://cc210c4350d7.sn.mynetname.net
 
 Gemini :
-Tentu, saya akan bantu jelaskan cara mengintegrasikan REST API MikroTik Anda dengan aplikasi AI.NET untuk memonitor status Netwatch.
+Tentu, saya akan bantu jelaskan cara mengintegrasikan REST API MikroTik Anda dengan aplikasi WIN.NET untuk memonitor status Netwatch.
 
 Integrasi ini akan memungkinkan Anda untuk melihat status **UP** atau **DOWN** dari setiap pelanggan langsung di halaman **Pelanggan** (`pelanggan.html`), berdasarkan data dari Netwatch di MikroTik Anda.
 
@@ -14,7 +14,7 @@ Berikut adalah langkah-langkah terstruktur untuk melakukan integrasi ini.
 
 -----
 
-## Integrasi MikroTik Netwatch ke Aplikasi AI.NET
+## Integrasi MikroTik Netwatch ke Aplikasi WIN.NET
 
 Untuk menjaga keamanan kredensial MikroTik Anda dan menghindari masalah CORS (Cross-Origin Resource Sharing), kita tidak akan memanggil API MikroTik langsung dari browser. Sebagai gantinya, kita akan membuat sebuah *proxy* menggunakan **Supabase Edge Function**.
 
@@ -234,7 +234,7 @@ function renderCustomerList(data) {
       * **Merah**: Jika status `down`.
       * **Abu-abu**: Jika IP pelanggan tidak ditemukan di Netwatch atau tidak ada data IP (`unknown`).
 
-Dengan mengikuti langkah-langkah di atas, aplikasi AI.NET Anda akan terintegrasi dengan MikroTik dan dapat menampilkan status koneksi pelanggan secara *real-time*.
+Dengan mengikuti langkah-langkah di atas, aplikasi WIN.NET Anda akan terintegrasi dengan MikroTik dan dapat menampilkan status koneksi pelanggan secara *real-time*.
 
 saya :
 coba buatkan code untuk cek dengan curl

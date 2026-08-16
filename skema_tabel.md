@@ -3,8 +3,8 @@
 
 CREATE TABLE public.app_settings (
   id uuid NOT NULL DEFAULT gen_random_uuid(),
-  app_name text NOT NULL DEFAULT 'AI.NET'::text,
-  app_short_name text NOT NULL DEFAULT 'AI.NET'::text,
+  app_name text NOT NULL DEFAULT 'WIN.NET'::text,
+  app_short_name text NOT NULL DEFAULT 'WIN.NET'::text,
   app_description text DEFAULT 'Sistem manajemen pelanggan ISP'::text,
   app_tagline text DEFAULT 'Kelola pelanggan dengan mudah'::text,
   logo_url text NOT NULL DEFAULT 'assets/logo_192x192.png'::text,

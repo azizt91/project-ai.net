@@ -13,18 +13,18 @@ class ApplySettings {
         try {
             // Get settings
             this.settings = await this.getSettings();
-            
+
             if (this.settings) {
                 // Apply to all pages
                 this.applyTitle(this.settings.app_name);
                 this.applyFavicon(this.settings.favicon_url);
                 this.applyThemeColor(this.settings.theme_color);
                 this.applyManifest(this.settings);
-                
+
                 // Apply to specific pages
                 this.applyToLoginPage(this.settings);
                 this.applyToCustomerPages(this.settings);
-                
+
                 // Export to window for other scripts to access
                 window.APP_SETTINGS = this.settings;
             }
@@ -38,7 +38,7 @@ class ApplySettings {
     async getSettings() {
         // Try localStorage first (faster)
         const localSettings = this.getLocalSettings();
-        
+
         // Always try to get fresh data from Supabase in background
         try {
             const { data, error } = await supabase
@@ -156,7 +156,7 @@ class ApplySettings {
 
     applyToLoginPage(settings) {
         // Check if we're on login page
-        if (!window.location.pathname.includes('login.html') && 
+        if (!window.location.pathname.includes('login.html') &&
             !window.location.pathname.includes('index.html')) {
             return;
         }
@@ -184,7 +184,7 @@ class ApplySettings {
         // Export WhatsApp number for customer pages
         if (settings.whatsapp_number) {
             window.WHATSAPP_NUMBER = settings.whatsapp_number;
-            
+
             // Dispatch event for other scripts
             window.dispatchEvent(new CustomEvent('settings-loaded', {
                 detail: { whatsapp: settings.whatsapp_number }
@@ -205,7 +205,7 @@ class ApplySettings {
     getCurrentPageName() {
         const path = window.location.pathname;
         const filename = path.split('/').pop().split('.')[0];
-        
+
         const pageNames = {
             'index': 'Login',
             'login': 'Login',
@@ -283,22 +283,22 @@ export function getQRISInfo() {
 // Apply settings on login and register pages
 document.addEventListener('DOMContentLoaded', async () => {
     const settings = getAppSettings();
-    
+
     // Check if we're on login page (index.html)
     const loginLogo = document.getElementById('login-logo');
     const loginAppName = document.getElementById('login-app-name');
-    
+
     if (loginLogo && loginAppName) {
         loginLogo.src = settings?.logo_url || 'assets/sn-blue.png';
-        loginAppName.textContent = settings?.app_name || 'AI.NET';
+        loginAppName.textContent = settings?.app_name || 'WIN.NET';
     }
-    
+
     // Check if we're on register page
     const registerLogo = document.getElementById('register-logo');
     const registerAppName = document.getElementById('register-app-name');
-    
+
     if (registerLogo && registerAppName) {
         registerLogo.src = settings?.logo_url || 'assets/sn-blue.png';
-        registerAppName.textContent = settings?.app_name || 'AI.NET';
+        registerAppName.textContent = settings?.app_name || 'WIN.NET';
     }
 });

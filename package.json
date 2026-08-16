@@ -14,7 +14,7 @@
     "billing",
     "netlify"
   ],
-  "author": "AI.NET",
+  "author": "WIN.NET",
   "license": "MIT",
   "dependencies": {
     "crypto": "1.0.1",
